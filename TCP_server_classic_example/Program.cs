@@ -3,6 +3,13 @@ using System.Net.Sockets;
 using System.Text;
 
 var tcpListener = new TcpListener(IPAddress.Any, 8888);
+// условный словарь
+var words = new Dictionary<string, string>()
+    {
+        {"red", "красный" },
+        {"blue", "синий" },
+        {"green", "зеленый" },
+    };
 
 try
 {
@@ -28,13 +35,6 @@ finally
 // обрабатываем клиент
 async Task ProcessClientAsync(TcpClient tcpClient)
 {
-    // условный словарь
-    var words = new Dictionary<string, string>()
-    {
-        {"red", "красный" },
-        {"blue", "синий" },
-        {"green", "зеленый" },
-    };
     var stream = tcpClient.GetStream();
     // буфер для входящих данных
     var response = new List<byte>();
